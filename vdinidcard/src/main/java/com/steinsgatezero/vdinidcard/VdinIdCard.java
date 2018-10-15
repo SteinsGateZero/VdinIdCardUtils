@@ -89,6 +89,9 @@ public final class VdinIdCard implements ActiveCallBack {
 
     }
 
+    /**
+     * builder
+     */
     public static final class Builder {
         private final Context context;
         private boolean isNFC = true;//默认为NFC模式
@@ -103,6 +106,14 @@ public final class VdinIdCard implements ActiveCallBack {
         public Builder(@NonNull Context context, @NonNull String szFactory, @NonNull ArrayList<Serverinfo> cardServerList, @NonNull CardListenter cardListenter) {
             this.context = context;
             this.cardServerList = cardServerList;
+            this.szFactory = szFactory;
+            this.cardListenter = cardListenter;
+        }
+
+        public Builder(@NonNull Context context, @NonNull String szFactory, @NonNull Serverinfo serverinfo, @NonNull CardListenter cardListenter) {
+            this.context = context;
+            this.cardServerList = new ArrayList<>();
+            cardServerList.add(serverinfo);
             this.szFactory = szFactory;
             this.cardListenter = cardListenter;
         }
@@ -331,6 +342,8 @@ public final class VdinIdCard implements ActiveCallBack {
             context = null;
             nfcInitListener = null;
             readProcess = null;
+            eidServerList.clear();
+            cardServerList.clear();
         }
 
     }
