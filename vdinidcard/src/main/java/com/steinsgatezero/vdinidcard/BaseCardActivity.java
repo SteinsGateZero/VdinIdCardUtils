@@ -8,7 +8,6 @@ import android.support.annotation.RequiresPermission;
 
 public abstract class BaseCardActivity extends Activity {
 
-    @NonNull
     protected VdinIdCard idCard;
     private boolean isFirst = true;//防止两次获取，第一次onCreate中也会初始化一次NFC适配器
 
@@ -38,6 +37,7 @@ public abstract class BaseCardActivity extends Activity {
     protected void onDestroy() {
         super.onDestroy();
         idCard.destroy();
+        idCard = null;
     }
 
     @Override

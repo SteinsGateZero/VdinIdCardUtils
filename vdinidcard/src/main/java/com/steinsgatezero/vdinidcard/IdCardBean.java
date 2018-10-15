@@ -3,6 +3,9 @@ package com.steinsgatezero.vdinidcard;
 import android.os.Parcel;
 import android.os.Parcelable;
 
+/**
+ * 身份证返回参数封装类(序列化)
+ */
 public class IdCardBean implements Parcelable {
     private String identificationNumber;//身份证号
     private String name;//姓名
@@ -17,7 +20,7 @@ public class IdCardBean implements Parcelable {
     private String snId;
     private String dnId;
     private String cardType;//港澳台居住证为J，其他为空
-    private String cardSignNum;//港澳台居住证
+    private String cardSignNum;//港澳台居住证SignNum
 
     public IdCardBean() {
     }

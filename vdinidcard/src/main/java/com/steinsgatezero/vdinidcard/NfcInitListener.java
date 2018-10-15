@@ -1,7 +1,7 @@
 package com.steinsgatezero.vdinidcard;
 
 /**
- * NFC初始化监听
+ * NFC适配器监听(nfc是否打卡，nfc是否被支持)
  */
 public interface NfcInitListener {
 

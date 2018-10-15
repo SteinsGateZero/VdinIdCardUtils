@@ -42,38 +42,41 @@ public final class VdinIdCard implements ActiveCallBack {
     public static final int READ_BUSY = 43;//服务器繁忙
 
     private Context context;
-    private NfcInitListener nfcInitListener;//nfc初始化监听
+    private NfcInitListener nfcInitListener;//nfc适配器监听
     private ReadProcess readProcess;//读卡进程监听
     private CardListenter cardListenter;//读卡结果监听回调
-    private final boolean isNFC;
+    private final boolean isNFC;//是否是nfc模式,默认为是
     private final ArrayList<Serverinfo> cardServerList;
     private final ArrayList<Serverinfo> eidServerList;
-    private NfcAdapter adapter;
-    private boolean isTestServer;
-    private OTGReadCardAPI readCardAPI;
-    private PendingIntent pendingIntent;
+    private NfcAdapter adapter;//nfc适配器
+    private boolean isTestServer;//是否是测试服务器,默认为否
+    private OTGReadCardAPI readCardAPI;//读卡接口
+    private PendingIntent pendingIntent;//延迟意图
     private IntentFilter tagDetected;
-    private ThreadPoolExecutor readExecutor;
-    private final String szFactory;
+    private ThreadPoolExecutor readExecutor;//线程池
+    private final String szFactory;//厂商标识
 
     @Override
     public String GetEidPin(int i) {
+        // TODO: 2018/10/15 For EidPin
         return null;
     }
 
     @Override
     public EidUserInfo GetEidUserInfo() {
+        // TODO: 2018/10/15 For Eid
         return null;
     }
 
     @Override
     public PassportInfo GetPassportUserInfo() {
+        // TODO: 2018/10/15 For Passport
         return null;
     }
 
     @Override
     public void readProgress(int i) {
-
+        // TODO: 2018/10/15 For readProgress
     }
 
     @Override
@@ -170,10 +173,15 @@ public final class VdinIdCard implements ActiveCallBack {
             tagDetected.addCategory(Intent.CATEGORY_DEFAULT);
             initNfcAdapter();
         } else {
-
+// TODO: 2018/10/15 For OTG init
         }
     }
 
+    /**
+     * 读卡
+     *
+     * @param intent 读取的数据
+     */
     public void readCard(final Intent intent) {
         if (readProcess != null) {
             readProcess.readStart();
@@ -186,7 +194,7 @@ public final class VdinIdCard implements ActiveCallBack {
                     if (isNFC) {
                         readCode = readCardAPI.NfcReadCard(szFactory, intent, null);
                     } else {
-
+// TODO: 2018/10/15 For OTG Read
                     }
                     parseCard(readCode);
                 }
@@ -202,6 +210,9 @@ public final class VdinIdCard implements ActiveCallBack {
      * @param code 读卡返回的状态码
      */
     private synchronized void parseCard(final int code) {
+        if (context == null) {
+            return;
+        }
         switch (code) {
             case READ_SUCCESS:
                 final IdCardBean cardBean = new IdCardBean();
@@ -317,6 +328,9 @@ public final class VdinIdCard implements ActiveCallBack {
         });
     }
 
+    /**
+     * 移除对nfc的监听
+     */
     @RequiresPermission(Manifest.permission.NFC)
     public void unRegisterNfc() {
         if (adapter == null) {
@@ -325,6 +339,9 @@ public final class VdinIdCard implements ActiveCallBack {
         adapter.disableForegroundDispatch((Activity) context);
     }
 
+    /**
+     * 销毁
+     */
     public void destroy() {
         readCardAPI.release();
         readExecutor.shutdown();
@@ -347,7 +364,6 @@ public final class VdinIdCard implements ActiveCallBack {
         }
 
     }
-
 
     /**
      * @return 判断是否为NFC模式

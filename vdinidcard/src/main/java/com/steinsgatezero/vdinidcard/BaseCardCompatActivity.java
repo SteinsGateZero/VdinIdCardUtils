@@ -8,7 +8,6 @@ import android.support.v7.app.AppCompatActivity;
 
 public abstract class BaseCardCompatActivity extends AppCompatActivity {
 
-    @NonNull
     protected VdinIdCard idCard;
     private boolean isFirst = true;//防止两次获取，第一次onCreate中也会初始化一次NFC适配器
 
@@ -38,6 +37,7 @@ public abstract class BaseCardCompatActivity extends AppCompatActivity {
     protected void onDestroy() {
         super.onDestroy();
         idCard.destroy();
+        idCard = null;
     }
 
     @Override
