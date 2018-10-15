@@ -27,7 +27,7 @@ android {
 
 dependencies {
     implementation fileTree(include: ['*.jar'], dir: 'libs')
-    // api(name:'zdhtnfcreadcard', ext:'aar')
+   // api(name:'zdhtnfcreadcard', ext:'aar')
     implementation 'com.android.support:support-annotations:28.0.0'
     api files('libs/classes.jar')
 }

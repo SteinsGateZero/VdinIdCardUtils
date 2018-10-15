@@ -57,7 +57,6 @@ public final class VdinIdCard implements ActiveCallBack {
     private final String szFactory;
 
     @Override
-
     public String GetEidPin(int i) {
         return null;
     }
@@ -188,6 +187,7 @@ public final class VdinIdCard implements ActiveCallBack {
 
     /**
      * 获取读卡信息
+     *
      * @param code 读卡返回的状态码
      */
     private synchronized void parseCard(final int code) {
@@ -253,16 +253,17 @@ public final class VdinIdCard implements ActiveCallBack {
 
     /**
      * 获取nfc适配器
+     *
      * @return 返回布尔值是否支持nfc
      */
     public boolean initNfcAdapter() {
-        if (adapter == null) {
-            adapter = NfcAdapter.getDefaultAdapter(context);
-        }
+        //if (adapter == null) {
+        adapter = NfcAdapter.getDefaultAdapter(context);
+        // }
         if (adapter != null) {
             if (adapter.isEnabled()) {
                 if (this.nfcInitListener != null) {
-                    this.nfcInitListener.initStatus(INIT_NFC_SUCCESS, "初始化成功");
+                    this.nfcInitListener.initStatus(INIT_NFC_SUCCESS, "NFC已开启");
                 }
             } else {
                 if (this.nfcInitListener != null) {
@@ -334,4 +335,11 @@ public final class VdinIdCard implements ActiveCallBack {
 
     }
 
+
+    /**
+     * @return 判断是否为NFC模式
+     */
+    public boolean isNFC() {
+        return isNFC;
+    }
 }
