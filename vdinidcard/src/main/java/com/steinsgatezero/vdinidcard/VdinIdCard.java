@@ -247,7 +247,7 @@ public final class VdinIdCard implements ActiveCallBack {
                 ((Activity) context).runOnUiThread(new Runnable() {
                     @Override
                     public void run() {
-                        cardListenter.onSuccessed(cardBean);
+                        cardListenter.onSucceed(cardBean);
                     }
                 });
                 break;
@@ -359,7 +359,9 @@ public final class VdinIdCard implements ActiveCallBack {
             context = null;
             nfcInitListener = null;
             readProcess = null;
-            eidServerList.clear();
+            if (eidServerList != null) {
+                eidServerList.clear();
+            }
             cardServerList.clear();
         }
 

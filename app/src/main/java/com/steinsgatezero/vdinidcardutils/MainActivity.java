@@ -34,7 +34,7 @@ public class MainActivity extends BaseCardActivity implements NfcInitListener, C
     }
 
     @Override
-    public void onSuccessed(IdCardBean cardBean) {
+    public void onSucceed(IdCardBean cardBean) {
         textView.setText(cardBean.toString());
     }
 

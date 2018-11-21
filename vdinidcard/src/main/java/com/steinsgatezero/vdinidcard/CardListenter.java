@@ -9,7 +9,7 @@ public interface CardListenter {
      * 读取成功
      * @param cardBean 身份信息
      */
-    void onSuccessed(IdCardBean cardBean);
+    void onSucceed(IdCardBean cardBean);
 
     /**
      * 读取失败

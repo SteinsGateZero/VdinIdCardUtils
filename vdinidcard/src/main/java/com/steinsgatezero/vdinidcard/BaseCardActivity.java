@@ -36,8 +36,10 @@ public abstract class BaseCardActivity extends Activity {
     @Override
     protected void onDestroy() {
         super.onDestroy();
-        idCard.destroy();
-        idCard = null;
+        if (idCard != null) {
+            idCard.destroy();
+            idCard = null;
+        }
     }
 
     @Override
