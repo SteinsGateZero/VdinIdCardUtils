@@ -22,7 +22,7 @@ public class MainActivity extends BaseCardActivity implements NfcInitListener, C
         setContentView(R.layout.activity_main);
         textView = findViewById(R.id.testcard);
         //new Serverinfo("id.vdin01.com", 12345)// TygerZH server测试
-        idCard = new VdinIdCard.Builder(this, "4ba7441a8f7181c8c2cfd9e3de12995b", new Serverinfo("id.vdin01.com", 80), this).isNFC(true).isTestServer(false).setNfcInitListenter(this).build();
+        idCard = new VdinIdCard.Builder(this, "e20acb18b0542af3440d6ed2885d857a", new Serverinfo("id.vdin01.com", 8848), this).isNFC(true).isTestServer(false).setNfcInitListenter(this).build();
     }
 
     public void readCard(View view) {
